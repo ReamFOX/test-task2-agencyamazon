@@ -1,6 +1,10 @@
 package com.amazonagency.restapi.model.data;
 
-public class StatisticByDate {
+import java.io.Serializable;
+import lombok.Data;
+
+@Data
+public class StatisticByDate implements Serializable {
     private SalesByDate totalSales;
     private TrafficByDate totalTraffic;
 

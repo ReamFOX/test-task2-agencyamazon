@@ -1,9 +1,10 @@
 package com.amazonagency.restapi.model.data;
 
+import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public abstract class AbstractTraffic {
+public abstract class AbstractTraffic implements Serializable {
     private int browserSessions;
     private int browserSessionsB2B;
     private int mobileAppSessions;

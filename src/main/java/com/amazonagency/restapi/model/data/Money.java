@@ -1,10 +1,11 @@
 package com.amazonagency.restapi.model.data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import lombok.Data;
 
 @Data
-public class Money {
+public class Money implements Serializable {
     private BigDecimal amount;
     private String currencyCode;
 

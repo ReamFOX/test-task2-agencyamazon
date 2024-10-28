@@ -1,10 +1,11 @@
 package com.amazonagency.restapi.model.data;
 
+import java.io.Serializable;
 import java.math.MathContext;
 import lombok.Data;
 
 @Data
-public abstract class AbstractSales {
+public abstract class AbstractSales implements Serializable {
     private int unitsOrdered;
     private int unitsOrderedB2B;
     private int totalOrderItems;

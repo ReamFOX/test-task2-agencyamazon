@@ -1,6 +1,5 @@
 package com.amazonagency.restapi.model.data;
 
-import java.math.MathContext;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
