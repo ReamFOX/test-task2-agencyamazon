@@ -1,4 +1,6 @@
 package com.amazonagency.restapi.dto.user.login;
 
-public class UserLoginResponseDto {
+import lombok.Data;
+
+public record UserLoginResponseDto(String token) {
 }
