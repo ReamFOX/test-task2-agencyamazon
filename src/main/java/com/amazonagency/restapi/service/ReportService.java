@@ -8,9 +8,14 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface ReportService {
+
     void fetchAndSave();
+
     List<SalesAndTrafficByDate> getSalesAndTrafficByDate(LocalDate startDate, LocalDate endDate);
+
     List<SalesAndTrafficByAsin> getSalesAndTrafficByAsin(List<String> asins);
+
     StatisticByDate getStatisticByDate();
+
     StatisticByAsin getStatisticByAsin();
 }

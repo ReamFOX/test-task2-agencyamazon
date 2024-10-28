@@ -13,6 +13,7 @@ import com.amazonagency.restapi.service.ReportService;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,17 +36,20 @@ public class ReportServiceImpl implements ReportService {
         reportByDateRepository.saveAll(reportByDate);
     }
 
+    @Cacheable(value = "by_date_cache")
     @Override
     public List<SalesAndTrafficByDate> getSalesAndTrafficByDate(LocalDate startDate,
                                                                 LocalDate endDate) {
-        return reportByDateRepository.getByDateBetween(startDate, endDate);
+        return reportByDateRepository.getByDateBetween(startDate.minusDays(1), endDate.plusDays(1));
     }
 
+    @Cacheable(value = "by_asins_cache")
     @Override
     public List<SalesAndTrafficByAsin> getSalesAndTrafficByAsin(List<String> asins) {
-        return reportByAsinRepository.getByAsinIn(asins);
+        return reportByAsinRepository.getByParentAsinIn(asins);
     }
 
+    @Cacheable(value = "total_cache", key = "'total_by_date'")
     @Override
     public StatisticByDate getStatisticByDate() {
         var statisticByDate = new StatisticByDate();
@@ -53,6 +57,7 @@ public class ReportServiceImpl implements ReportService {
         return statisticByDate;
     }
 
+    @Cacheable(value = "total_cache", key = "'total_by_asins'")
     @Override
     public StatisticByAsin getStatisticByAsin() {
         var statisticByAsin = new StatisticByAsin();
