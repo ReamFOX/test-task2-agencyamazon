@@ -1,9 +1,16 @@
 package com.amazonagency.restapi.model.data;
 
-import lombok.Data;
+import java.math.MathContext;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Data
+@ToString
 public class SalesByAsin extends AbstractSales {
 }

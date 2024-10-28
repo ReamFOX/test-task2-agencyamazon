@@ -1,22 +1,28 @@
 package com.amazonagency.restapi.model.data;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Data
+@ToString
 public class SalesByDate extends AbstractSales {
-    private Money averageSalesPerOrderItem;
-    private Money averageSalesPerOrderItemB2B;
-    private double averageUnitsPerOrderItem;
-    private double averageUnitsPerOrderItemB2B;
-    private Money averageSellingPrice;
-    private Money averageSellingPriceB2B;
-    private int unitsRefunded;
-    private double refundRate;
-    private int claimsGranted;
-    private Money claimsAmount;
-    private Money shippedProductSales;
-    private int unitsShipped;
-    private int ordersShipped;
+    protected Money averageSalesPerOrderItem;
+    protected Money averageSalesPerOrderItemB2B;
+    protected double averageUnitsPerOrderItem;
+    protected double averageUnitsPerOrderItemB2B;
+    protected Money averageSellingPrice;
+    protected Money averageSellingPriceB2B;
+    protected int unitsRefunded;
+    protected double refundRate;
+    protected int claimsGranted;
+    protected Money claimsAmount;
+    protected Money shippedProductSales;
+    protected int unitsShipped;
+    protected int ordersShipped;
 }

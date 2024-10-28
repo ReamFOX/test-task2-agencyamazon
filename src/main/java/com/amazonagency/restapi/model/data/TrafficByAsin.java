@@ -1,25 +1,31 @@
 package com.amazonagency.restapi.model.data;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Data
+@ToString
 public class TrafficByAsin extends AbstractTraffic {
-    private double browserSessionPercentage;
-    private double browserSessionPercentageB2B;
-    private double mobileAppSessionPercentage;
-    private double mobileAppSessionPercentageB2B;
-    private double sessionPercentage;
-    private double sessionPercentageB2B;
-    private double browserPageViewsPercentage;
-    private double browserPageViewsPercentageB2B;
-    private double mobileAppPageViewsPercentage;
-    private double mobileAppPageViewsPercentageB2B;
-    private double pageViewsPercentage;
-    private double pageViewsPercentageB2B;
-    private double buyBoxPercentage;
-    private double buyBoxPercentageB2B;
-    private double unitSessionPercentage;
-    private double unitSessionPercentageB2B;
+    protected double browserSessionPercentage;
+    protected double browserSessionPercentageB2B;
+    protected double mobileAppSessionPercentage;
+    protected double mobileAppSessionPercentageB2B;
+    protected double sessionPercentage;
+    protected double sessionPercentageB2B;
+    protected double browserPageViewsPercentage;
+    protected double browserPageViewsPercentageB2B;
+    protected double mobileAppPageViewsPercentage;
+    protected double mobileAppPageViewsPercentageB2B;
+    protected double pageViewsPercentage;
+    protected double pageViewsPercentageB2B;
+    protected double buyBoxPercentage;
+    protected double buyBoxPercentageB2B;
+    protected double unitSessionPercentage;
+    protected double unitSessionPercentageB2B;
 }

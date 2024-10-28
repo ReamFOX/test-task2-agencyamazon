@@ -2,19 +2,26 @@ package com.amazonagency.restapi.model.data;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Data
+@ToString
 public class TrafficByDate extends AbstractTraffic {
-    private double buyBoxPercentage;
-    private double buyBoxPercentageB2B;
-    private double orderItemSessionPercentage;
-    private double orderItemSessionPercentageB2B;
-    private double unitSessionPercentage;
-    private double unitSessionPercentageB2B;
-    private int averageOfferCount;
-    private int averageParentItems;
-    private int feedbackReceived;
-    private int negativeFeedbackReceived;
-    private double receivedNegativeFeedbackRate;
+    protected double buyBoxPercentage;
+    protected double buyBoxPercentageB2B;
+    protected double orderItemSessionPercentage;
+    protected double orderItemSessionPercentageB2B;
+    protected double unitSessionPercentage;
+    protected double unitSessionPercentageB2B;
+    protected int averageOfferCount;
+    protected int averageParentItems;
+    protected int feedbackReceived;
+    protected int negativeFeedbackReceived;
+    protected double receivedNegativeFeedbackRate;
 }
