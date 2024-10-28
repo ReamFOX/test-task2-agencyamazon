@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface ReportByAsinRepository extends MongoRepository<SalesAndTrafficByAsin, String> {
 
-    List<SalesAndTrafficByAsin> getByAsinIn(List<String> asins);
+    List<SalesAndTrafficByAsin> getByParentAsinIn(List<String> asins);
 }
