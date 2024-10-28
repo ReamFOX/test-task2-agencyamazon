@@ -24,7 +24,7 @@ public class ReportController {
         return reportService.getSalesAndTrafficByAsin(asins);
     }
 
-    @GetMapping("/by_asins")
+    @GetMapping("/by_asins/total")
     public StatisticByAsin getTotalStatisticByAsins() {
         return reportService.getStatisticByAsin();
     }
@@ -35,7 +35,7 @@ public class ReportController {
         return reportService.getSalesAndTrafficByDate(startDate, endDate);
     }
 
-    @GetMapping("/by_date")
+    @GetMapping("/by_date/total")
     public StatisticByDate getStatisticByDate() {
         return reportService.getStatisticByDate();
     }
