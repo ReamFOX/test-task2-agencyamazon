@@ -21,7 +21,8 @@ public class ReportController {
 
     @GetMapping("/by_asins")
     public List<SalesAndTrafficByAsin> getSalesAndTrafficByAsins(@RequestParam List<String> asins) {
-        return reportService.getSalesAndTrafficByAsin(asins);
+        List<String> sortedAsins = asins.stream().sorted().toList();
+        return reportService.getSalesAndTrafficByAsin(sortedAsins);
     }
 
     @GetMapping("/by_asins/total")
