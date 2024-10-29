@@ -30,5 +30,4 @@ public class AuthController {
     public UserLoginResponseDto login(@RequestBody @Valid UserLoginRequestDto requestDto) {
         return authService.authenticate(requestDto);
     }
-
 }
