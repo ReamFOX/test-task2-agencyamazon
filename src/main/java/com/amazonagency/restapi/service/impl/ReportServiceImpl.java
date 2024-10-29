@@ -40,7 +40,10 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<SalesAndTrafficByDate> getSalesAndTrafficByDate(LocalDate startDate,
                                                                 LocalDate endDate) {
-        return reportByDateRepository.getByDateBetween(startDate.minusDays(1), endDate.plusDays(1));
+        if (endDate.isBefore(startDate)) {
+            throw new IllegalArgumentException("End date can't be before start date.");
+        }
+        return reportByDateRepository.findByDateBetween(startDate, endDate);
     }
 
     @Cacheable(value = "by_asins_cache")

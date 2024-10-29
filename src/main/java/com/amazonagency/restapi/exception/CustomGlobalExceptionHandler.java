@@ -40,8 +40,11 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         return new ResponseEntity<>(body, headers, status);
     }
 
-    @ExceptionHandler(RegistrationException.class)
-    public ResponseEntity<Object> handleRegistrationException(RegistrationException e) {
+    @ExceptionHandler({
+            RegistrationException.class,
+            IllegalArgumentException.class
+            })
+    public ResponseEntity<Object> handleBadRequestException(Exception e) {
         return getDefTemplate(e, HttpStatus.BAD_REQUEST);
     }
 
