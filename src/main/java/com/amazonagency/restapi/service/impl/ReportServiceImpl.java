@@ -7,7 +7,6 @@ import com.amazonagency.restapi.model.data.StatisticByAsin;
 import com.amazonagency.restapi.model.data.StatisticByDate;
 import com.amazonagency.restapi.repository.ReportByAsinRepository;
 import com.amazonagency.restapi.repository.ReportByDateRepository;
-import com.amazonagency.restapi.repository.ReportSpecificationRepository;
 import com.amazonagency.restapi.service.ReportReader;
 import com.amazonagency.restapi.service.ReportService;
 import java.time.LocalDate;
@@ -23,17 +22,14 @@ public class ReportServiceImpl implements ReportService {
     private final ReportReader reportReader;
     private final ReportByDateRepository reportByDateRepository;
     private final ReportByAsinRepository reportByAsinRepository;
-    private final ReportSpecificationRepository reportSpecificationRepository;
 
-    @Scheduled(cron = "0 0/15 * * * ?")
+    @Scheduled(cron = "0/15 * * * * ?")
     @Override
     public void fetchAndSave() {
         Report report = reportReader.read();
-        var reportSpecification = report.getReportSpecification();
         List<SalesAndTrafficByAsin> reportByAsin = report.getSalesAndTrafficByAsin();
         List<SalesAndTrafficByDate> reportByDate = report.getSalesAndTrafficByDate();
 
-        reportSpecificationRepository.save(reportSpecification);
         reportByAsinRepository.saveAll(reportByAsin);
         reportByDateRepository.saveAll(reportByDate);
     }
@@ -58,7 +54,10 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public StatisticByDate getStatisticByDate() {
         var statisticByDate = new StatisticByDate();
-        reportByDateRepository.findAll().forEach(statisticByDate::add);
+        List<SalesAndTrafficByDate> allDays = reportByDateRepository.findAll();
+        allDays.forEach(statisticByDate::add);
+        statisticByDate.getTotalSales().calculateAverages();
+        statisticByDate.getTotalTraffic().calculateAverages(allDays.size());
         return statisticByDate;
     }
 
@@ -66,7 +65,9 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public StatisticByAsin getStatisticByAsin() {
         var statisticByAsin = new StatisticByAsin();
-        reportByAsinRepository.findAll().forEach(statisticByAsin::add);
+        List<SalesAndTrafficByAsin> allAsins = reportByAsinRepository.findAll();
+        allAsins.forEach(statisticByAsin::add);
+        statisticByAsin.getTotalTraffic().calculateAverages(allAsins.size());
         return statisticByAsin;
     }
 }
