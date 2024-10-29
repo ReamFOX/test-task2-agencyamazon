@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,6 +25,7 @@ public class ReportServiceImpl implements ReportService {
     private final ReportByAsinRepository reportByAsinRepository;
     private final ReportSpecificationRepository reportSpecificationRepository;
 
+    @Scheduled(cron = "0 0/15 * * * ?")
     @Override
     public void fetchAndSave() {
         Report report = reportReader.read();
@@ -43,7 +45,7 @@ public class ReportServiceImpl implements ReportService {
         if (endDate.isBefore(startDate)) {
             throw new IllegalArgumentException("End date can't be before start date.");
         }
-        return reportByDateRepository.findByDateBetween(startDate, endDate);
+        return reportByDateRepository.getByDateBetween(startDate.minusDays(1), endDate.plusDays(1));
     }
 
     @Cacheable(value = "by_asins_cache")
