@@ -23,7 +23,7 @@ public class ReportServiceImpl implements ReportService {
     private final ReportByDateRepository reportByDateRepository;
     private final ReportByAsinRepository reportByAsinRepository;
 
-    @Scheduled(cron = "0/15 * * * * ?")
+    @Scheduled(cron = "0 0/15 * * * ?")
     @Override
     public void fetchAndSave() {
         Report report = reportReader.read();
