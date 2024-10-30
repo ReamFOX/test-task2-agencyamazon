@@ -1,10 +1,10 @@
 package com.amazonagency.restapi.service.impl;
 
+import com.amazonagency.restapi.dto.data.StatisticByAsin;
+import com.amazonagency.restapi.dto.data.StatisticByDate;
 import com.amazonagency.restapi.model.data.Report;
 import com.amazonagency.restapi.model.data.SalesAndTrafficByAsin;
 import com.amazonagency.restapi.model.data.SalesAndTrafficByDate;
-import com.amazonagency.restapi.model.data.StatisticByAsin;
-import com.amazonagency.restapi.model.data.StatisticByDate;
 import com.amazonagency.restapi.repository.ReportByAsinRepository;
 import com.amazonagency.restapi.repository.ReportByDateRepository;
 import com.amazonagency.restapi.service.ReportReader;

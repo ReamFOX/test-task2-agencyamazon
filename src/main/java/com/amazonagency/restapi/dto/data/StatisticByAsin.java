@@ -1,5 +1,8 @@
-package com.amazonagency.restapi.model.data;
+package com.amazonagency.restapi.dto.data;
 
+import com.amazonagency.restapi.model.data.SalesAndTrafficByAsin;
+import com.amazonagency.restapi.model.data.SalesByAsin;
+import com.amazonagency.restapi.model.data.TrafficByAsin;
 import java.io.Serializable;
 import lombok.Data;
 
