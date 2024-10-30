@@ -12,7 +12,9 @@ import com.amazonagency.restapi.service.ReportService;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,11 @@ public class ReportServiceImpl implements ReportService {
     private final ReportByDateRepository reportByDateRepository;
     private final ReportByAsinRepository reportByAsinRepository;
 
+    @Caching(evict = {
+            @CacheEvict(value = "by_asins_cache", allEntries = true),
+            @CacheEvict(value = "by_date_cache", allEntries = true),
+            @CacheEvict(value = "total_cache", allEntries = true)
+    })
     @Scheduled(cron = "0 0/15 * * * ?")
     @Override
     public void fetchAndSave() {
